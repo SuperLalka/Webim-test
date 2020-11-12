@@ -1,13 +1,50 @@
-.header {
-
+a {
+    color: black;
+    text-decoration: none;
 }
 
-.header__login-button {
+body {
+    background-color: lightsteelblue;
+    background-image: url("https://pp.vk.me/c636824/v636824336/4223c/Q568gkhJSuY.jpg");
+    background-size: cover;
+    min-height: 100vh;
+}
 
+.header {
+    display: flex;
+    justify-content: center;
+    height: 20vh;
+}
+
+.header__github-block {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.header__github-auth {
+    display: flex;
+    justify-content: center;
+}
+
+.header__github-auth:hover {
+    box-shadow: 0 0 10px 0 rgba(255,255,255,0.8);
+}
+
+.header__github-logo {
+    height: 100px;
+}
+
+.header__github-logo-text {
+    cursor: pointer;
+    font-size: 25px;
+    max-width: fit-content;
+    padding: 20px;
 }
 
 .header__logout-button {
-
+    background: none;
 }
 
 .main {

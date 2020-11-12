@@ -10,9 +10,13 @@
 </head>
 <body>
   <header class="header">
-    <a class="header__login-button" href="{% url 'oauth2_provider:authorize' %}?{{ auth_params }}">Войти</a>
-    <a class="header__login-button" href="{% url 'auth' %}">Войти в GITHUB</a>
-    <button class="header__logout-button">Выйти</button>
+    <div class="header__github-block">
+      <a class="header__github-auth" href="{{ github_auth }}?{{ auth_params }}">
+        <img class="header__github-logo" src="https://avatars1.githubusercontent.com/u/9919?s=200&v=4"
+             alt="github_logo">
+        <button class="header__github-logo-text">Авторизироваться через <b>GITHUB</b></button>
+      </a>
+    </div>
   </header>
   <main class="main">
     <div class="main__numbers-block">
