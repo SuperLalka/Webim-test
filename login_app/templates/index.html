@@ -11,11 +11,19 @@
 <body>
   <header class="header">
     <div class="header__github-block">
-      <a class="header__github-auth" href="{{ github_auth }}?{{ auth_params }}">
-        <img class="header__github-logo" src="https://avatars1.githubusercontent.com/u/9919?s=200&v=4"
-             alt="github_logo">
-        <button class="header__github-logo-text">Авторизироваться через <b>GITHUB</b></button>
-      </a>
+      {% if request.session.github_token %}
+        <a class="header__github-auth" href="{% url 'logout' %}">
+          <img class="header__github-logo" src="https://avatars1.githubusercontent.com/u/9919?s=200&v=4"
+               alt="github_logo">
+          <button class="header__github-logo-text">Выйти из профиля <b>GITHUB</b></button>
+        </a>
+      {% else %}
+        <a class="header__github-auth" href="{{ github_auth }}?{{ auth_params }}">
+          <img class="header__github-logo" src="https://avatars1.githubusercontent.com/u/9919?s=200&v=4"
+               alt="github_logo">
+          <button class="header__github-logo-text">Авторизироваться через <b>GITHUB</b></button>
+        </a>
+      {% endif %}
     </div>
   </header>
   <main class="main">
@@ -27,4 +35,5 @@
 
   </footer>
 </body>
+<script type="module" src="{% static 'js/scripts.js' %}"></script>
 </html>
