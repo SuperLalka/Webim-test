@@ -15,6 +15,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='index', permanent=True)),
     path('index', views.index, name="index"),
     path('callback', views.callback, name="callback"),
+    path('logout', views.logout, name="logout"),
 ]
 
 
