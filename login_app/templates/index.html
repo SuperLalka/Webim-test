@@ -28,12 +28,23 @@
   </header>
   <main class="main">
     <div class="main__numbers-block">
-
+      {{ message }}
     </div>
   </main>
-  <footer class="footer">
-
-  </footer>
+  <footer class="footer"></footer>
 </body>
-<script type="module" src="{% static 'js/scripts.js' %}"></script>
+{% if request.session.github_token %}
+  <script>
+      var webSocketObject = new WebSocket(
+          `ws://` + window.location.host + `/ws/index`
+      );
+
+      webSocketObject.onmessage = function (e) {
+          let data = JSON.parse(e.data);
+          let message = data['message']
+          console.log(message)
+          document.querySelector('div.main__numbers-block').textContent = message;
+      };
+  </script>
+{% endif %}
 </html>
