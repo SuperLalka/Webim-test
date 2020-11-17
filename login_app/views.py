@@ -32,7 +32,10 @@ def callback(request):
     checks against the sent 'state' and exchanges
     the received code to the token that is saved in the session
     """
-    if request.session['user_uniq_state'] == request.GET.get('state'):
+    is_state_same = request.session['user_uniq_state'] == request.GET.get('state')
+    is_auth_confirmed = 'error' not in request.GET
+
+    if is_state_same and is_auth_confirmed:
         request.session.set_expiry(10000)
 
         auth_params = {
