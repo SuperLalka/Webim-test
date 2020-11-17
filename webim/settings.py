@@ -12,7 +12,7 @@ SECRET_KEY = 'b&q#3now^*xsw$paicm8ch*fgcvg!sl+aqw!o4ikpvp9afgv%('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['marklysenko.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['webim-test-lysenko.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -24,7 +24,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Applications
     'login_app',
+    # Modules
     'oauth2_provider',
     'corsheaders',
     'channels',
@@ -113,9 +115,9 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -131,8 +133,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'login_app/static')
 
 REDIS_HOST = '127.0.0.1'
 REDIS_PORT = '6379'
+
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
-CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
