@@ -1,5 +1,8 @@
 .env
 .git
 .idea
+celerybeat-schedule
+celerybeat.pid
+db.sqlite3
 __pycache__
 out
