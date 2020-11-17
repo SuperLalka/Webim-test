@@ -5,6 +5,10 @@ from channels.layers import get_channel_layer
 from webim.celery import app
 
 
+MIN_NUMBER = 10000
+MAX_NUMBER = 99999
+
+
 @app.task
 def number_generator():
     """
@@ -16,6 +20,6 @@ def number_generator():
         "main_page_num_generator",
         {
             "type": "number_message",
-            "message": random.randint(0, 10000)
+            "message": random.randint(MIN_NUMBER, MAX_NUMBER)
         }
     )
