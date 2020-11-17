@@ -7,6 +7,10 @@ from login_app import oauth
 
 
 def index(request):
+    """
+    Renders the main page based on the presence
+    of a token for authorization in the user session
+    """
     if request.session.get('github_token'):
         return render(request, 'index.html')
 
@@ -23,6 +27,11 @@ def index(request):
 
 
 def callback(request):
+    """
+    Сalled when the authorization from Github responds,
+    checks against the sent 'state' and exchanges
+    the received code to the token that is saved in the session
+    """
     if request.session['user_uniq_state'] == request.GET.get('state'):
         request.session.set_expiry(10000)
 
@@ -30,7 +39,7 @@ def callback(request):
             "client_id": oauth.GITHUB_CLIENT_KEY,
             "client_secret": oauth.GITHUB_CLIENT_SECRET,
             "code": request.GET.get('code'),
-            "state": str(random.getrandbits(64)),
+            # "state": str(random.getrandbits(64)),
             "redirect_uri": oauth.REDIRECT_URI,
         }
 
@@ -45,6 +54,9 @@ def callback(request):
 
 
 def logout(request):
+    """
+    Removes token from session
+    """
     if request.session.get('github_token'):
         del request.session['github_token']
     return redirect('/')
