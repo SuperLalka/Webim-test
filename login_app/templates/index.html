@@ -42,7 +42,6 @@
       webSocketObject.onmessage = function (e) {
           let data = JSON.parse(e.data);
           let message = data['message']
-          console.log(message)
           document.querySelector('div.main__numbers-block').textContent = message;
       };
   </script>
