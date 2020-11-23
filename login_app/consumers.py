@@ -1,9 +1,22 @@
 import json
+import redis
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 
 
 class NumberConsumer(WebsocketConsumer):
+
+    def websocket_connect(self, message):
+        """
+        Sends the current value of the generated number when opening a new socket
+        """
+        super().websocket_connect(self)
+        connector = redis.Redis()
+        number = connector.get('number').decode("utf-8")
+        self.send(text_data=json.dumps({
+            'event': 'Send',
+            'message': number
+        }))
 
     def connect(self):
         """
